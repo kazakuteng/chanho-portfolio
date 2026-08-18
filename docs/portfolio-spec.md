@@ -12,14 +12,15 @@
 2. About: 핵심 경험 지표
 3. Experience: SSAFY 이전 → 교육 → 현재
 4. Skills: 기술별 실제 사용 맥락
-5. Projects: 공통 프로젝트와 Kazakuteng 운영 서비스
-6. Currently Working On: 현재 학습·실험 항목
+5. Projects: 1등 수상 공통 프로젝트와 Kazakuteng 운영 서비스
+6. Currently Working On: 특화 프로젝트 기획과 공통 프로젝트 회고 항목
 7. Contact: 이메일과 GitHub
 
 ## Content constraints
 - 이름, 이메일, GitHub는 검증 전까지 placeholder를 유지한다.
 - Kazakuteng 링크는 `https://kazakuteng.pythonanywhere.com/`이다.
-- 현재 프로젝트의 수치와 담당 기능은 확인되기 전에는 성과처럼 단정하지 않는다.
+- 공통 프로젝트는 1등 수상, 배포 주소, 본인 담당 역할만 확인된 사실로 표현한다.
+- 특화 프로젝트의 수치와 담당 기능은 확정되기 전에는 성과처럼 단정하지 않는다.
 - 숙련도를 별점이나 백분율로 표현하지 않는다.
 
 ## Quality bar

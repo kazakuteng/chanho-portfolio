@@ -9,8 +9,8 @@ const closeMenu = () => { menuOpen.value = false }
 <template>
   <div class="site-shell">
     <header class="topbar">
-      <a class="logo" href="#top" aria-label="처음으로"><span>Y</span>N</a>
-      <button class="menu-button" :aria-expanded="menuOpen" aria-label="메뉴 열기" @click="menuOpen = !menuOpen">
+      <a class="logo" href="#top" aria-label="정찬호 포트폴리오 처음으로"><span>C</span>H</a>
+      <button class="menu-button" :aria-expanded="menuOpen" :aria-label="menuOpen ? '메뉴 닫기' : '메뉴 열기'" @click="menuOpen = !menuOpen">
         {{ menuOpen ? '닫기' : '메뉴' }}
       </button>
       <nav :class="['nav', { open: menuOpen }]" aria-label="주요 메뉴">
@@ -114,8 +114,9 @@ const closeMenu = () => { menuOpen.value = false }
         <div class="projects">
           <article v-for="project in portfolio.projects" :key="project.number" class="project-card">
             <div class="project-visual">
+              <img v-if="project.image" :src="project.image" :alt="project.imageAlt">
               <span class="project-number">{{ project.number }}</span><span class="status">● {{ project.status }}</span>
-              <div class="visual-word">
+              <div v-if="!project.image" class="visual-word">
                 {{ project.number === '01' ? 'PLAY' : 'LIVE' }}
               </div>
             </div>
