@@ -1,23 +1,27 @@
+import bbanggeutImage from '../assets/project-bbanggeut.png'
+import kazakutengImage from '../assets/project-kazakuteng.png'
+
 // 개인 정보와 포트폴리오 콘텐츠는 이 파일 한 곳에서 수정합니다.
 export const portfolio = {
   profile: {
-    name: 'YOUR NAME',
+    name: '정찬호',
     role: 'Backend × AI Developer',
     headline: '사용되는 서비스를 만들고,\nAI로 더 나은 경험을 설계합니다.',
     intro: 'Python과 Django로 웹 개발을 시작해 실제 동호회 서비스를 운영하고 있습니다. 지금은 Spring Boot와 FastAPI로 백엔드와 AI를 연결하는 개발자로 성장하고 있습니다.',
-    email: 'your.email@example.com',
-    github: 'https://github.com/YOUR_GITHUB',
-    resume: '#'
+    email: 'poo0404@naver.com',
+    github: 'https://github.com/kazakuteng/',
+    resume: null
   },
   stats: [
     { value: 'LIVE', label: '실사용 서비스 운영 중' },
-    { value: 'SSAFY', label: 'Python 비전공 트랙 수료' },
-    { value: 'NOW', label: '공통 프로젝트 진행 중' }
+    { value: '1st', label: 'SSAFY 공통 프로젝트 1등 수상' },
+    { value: 'PLAN', label: '특화 프로젝트 기획 진행 중' }
   ],
   journey: [
     { period: 'Before SSAFY', title: '서비스를 직접 만들고 운영하다', body: 'Django로 동호회 웹 서비스를 기획·개발하고 PythonAnywhere에 배포했습니다. 실제 구성원들과 사용하며 기능 개선과 운영을 경험하고 있습니다.', tag: '운영 경험' },
     { period: 'SSAFY', title: 'Python에서 웹과 AI로 확장하다', body: '비전공 Python 트랙에서 Python, AI, JavaScript, SQL, Django를 중심으로 학습하고 Git 기반 협업과 프로젝트 개발 과정을 익혔습니다.', tag: '교육 수료' },
-    { period: 'Present', title: '백엔드와 AI를 연결하다', body: 'SSAFY 공통 프로젝트에서 팀과 함께 서비스를 만들며 Spring Boot, FastAPI, Redis, 생성형 AI를 실제 제품 구조 안에서 다루고 있습니다.', tag: '진행 중' }
+    { period: 'Common Project', title: '백엔드 게임 API로 수상까지 연결하다', body: 'SSAFY 공통 프로젝트에서 아동 대상 놀이 서비스를 완성하고 1등을 수상했습니다. 주요 역할은 백엔드 게임 API 구현과 영상 포트폴리오 제작이었고, Jira 관리와 AI·프론트엔드·PM 업무의 부족한 부분을 함께 보조했습니다.', tag: '1등 수상' },
+    { period: 'Present', title: '특화 프로젝트를 기획하다', body: '공통 프로젝트 경험을 바탕으로 다음 특화 프로젝트를 기획하고 있습니다. 아직 확정되지 않은 성과나 담당 기능은 단정하지 않고, 문제 정의와 구현 방향을 구체화하는 단계입니다.', tag: '기획 중' }
   ],
   skills: [
     { group: 'Backend', items: ['Python', 'Django', 'Spring Boot', 'FastAPI'], note: 'REST API와 서비스 로직을 설계하고 AI 추론 서버를 연결합니다.' },
@@ -27,17 +31,17 @@ export const portfolio = {
   ],
   projects: [
     {
-      number: '01', status: 'IN PROGRESS', title: 'AI 아동 교육 플랫폼', subtitle: '모션 인식과 생성형 AI를 활용한 놀이 서비스',
-      description: '6~9세 아동이 몸을 움직이며 즐길 수 있는 게임 경험을 팀과 함께 개발하고 있습니다. 안정적인 게임 흐름과 AI 기능의 서비스 연동에 집중합니다.',
-      highlights: ['Spring Boot 백엔드', 'FastAPI AI 서버', 'Redis 세션 설계'], tech: ['Java', 'Spring Boot', 'FastAPI', 'Redis', 'Vue 3'], link: '#'
+      number: '01', status: '1ST PLACE', title: '빵긋', subtitle: '아동 대상 WebRTC 신체·인지 놀이 서비스',
+      description: '아이가 게임으로 놀며 배우고, 캐릭터와 대화하며 하루를 기록하는 유아 통합 교육 플랫폼입니다. SSAFY 공통 프로젝트로 완성해 배포했고, 1등을 수상했습니다.',
+      highlights: ['백엔드 게임 API 구현', '영상 포트폴리오 제작', 'Jira·AI·프론트엔드·PM 보조'], tech: ['Java', 'Spring Boot', 'FastAPI', 'Redis', 'WebRTC', 'React'], link: 'https://i15a501.p.ssafy.io/', image: bbanggeutImage, imageAlt: '빵긋 배포 서비스 시작 화면'
     },
     {
       number: '02', status: 'LIVE SERVICE', title: 'Kazakuteng', subtitle: '동호회 구성원이 실제 사용하는 운영 서비스',
       description: 'SSAFY 입과 전 Django로 직접 기획·개발·배포했습니다. 과제에서 끝나지 않고 실제 사용자의 의견을 반영하며 서비스를 운영하고 있습니다.',
-      highlights: ['기획부터 배포까지', '실제 사용자 운영', '피드백 기반 개선'], tech: ['Python', 'Django', 'JavaScript', 'SQL'], link: 'https://kazakuteng.pythonanywhere.com/'
+      highlights: ['기획부터 배포까지', '실제 사용자 운영', '피드백 기반 개선'], tech: ['Python', 'Django', 'JavaScript', 'SQL'], link: 'https://kazakuteng.pythonanywhere.com/', image: kazakutengImage, imageAlt: 'Kazakuteng 점수 랭킹 화면'
     }
   ],
-  current: ['AI 캐릭터 생성 파이프라인', 'FLUX · SDXL · LoRA 실험', 'FastAPI 추론 API', 'Redis 기반 세션 관리'],
+  current: ['SSAFY 특화 프로젝트 기획', '공통 프로젝트 회고 정리', '백엔드 게임 API 구현 사례 문서화', '영상 포트폴리오 자료 정리'],
   nav: [
     { label: 'About', href: '#about' }, { label: 'Experience', href: '#experience' },
     { label: 'Skills', href: '#skills' }, { label: 'Projects', href: '#projects' }, { label: 'Contact', href: '#contact' }

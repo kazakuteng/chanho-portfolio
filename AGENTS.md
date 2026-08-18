@@ -1,25 +1,39 @@
-# AGENTS.md
+# Project Goal
 
-## Mission
-Build a trustworthy employment portfolio that presents the owner as a backend developer who connects AI to real services.
+취업용 개인 개발자 포트폴리오 웹사이트를 제작한다.
 
-## Source of truth
-- Personal content: `src/data/portfolio.js`
-- Product requirements: `docs/portfolio-spec.md`
-- Working method: `docs/workflow.md`
-- Current tasks: `CHECKLIST.md`
+사용자는 Python/Backend/AI 개발자를 목표로 한다.
 
-## Working rules
-1. Read this file, the spec, and the checklist before changing the site.
-2. Never invent personal facts, metrics, links, or project responsibilities. Keep uncertain values as obvious placeholders.
-3. Prefer proof of use and problem solving over proficiency percentages or long tool lists.
-4. Preserve responsive behavior, keyboard access, semantic headings, and reduced-motion support.
-5. Keep content changes in `src/data/portfolio.js` unless the page structure truly changes.
-6. Make the smallest coherent change and update docs/tests when behavior or requirements change.
+# Working Rules
 
-## Definition of done
-- `npm run verify` passes.
-- No console errors or broken internal anchors.
-- Desktop and 320px-wide layouts remain readable.
-- Unknown personal information remains a placeholder.
-- `CHECKLIST.md` reflects completed and remaining work.
+1. 작업 전 README.md와 docs/를 확인한다.
+2. 기존 구조를 최대한 유지한다.
+3. 요구되지 않은 대규모 리팩토링을 하지 않는다.
+4. 한 번에 하나의 기능 단위로 작업한다.
+5. 코드 수정 후 반드시 검증한다.
+6. 오류가 발생하면 원인을 확인하고 수정한다.
+7. 검증되지 않은 상태에서 작업 완료라고 판단하지 않는다.
+
+# Git Rules
+
+- main 브랜치에서 직접 개발하지 않는다.
+- 작업 전 현재 브랜치를 확인한다.
+- 하나의 작업은 하나의 명확한 목적을 가져야 한다.
+
+# Validation
+
+작업 완료 전 다음을 실행한다.
+
+npm run lint
+npm run build
+
+테스트가 존재하면 테스트도 실행한다.
+
+# Completion
+
+작업 완료 시 다음을 보고한다.
+
+- 변경한 파일
+- 구현 내용
+- 실행한 검증
+- 남아 있는 문제
