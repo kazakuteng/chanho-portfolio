@@ -8,156 +8,145 @@ const closeMenu = () => { menuOpen.value = false }
 
 <template>
   <div class="site-shell">
+    <a class="skip-link" href="#main">본문으로 이동</a>
     <header class="topbar">
-      <a class="logo" href="#top" aria-label="정찬호 포트폴리오 처음으로"><span>C</span>H</a>
-      <button class="menu-button" :aria-expanded="menuOpen" :aria-label="menuOpen ? '메뉴 닫기' : '메뉴 열기'" @click="menuOpen = !menuOpen">
+      <a class="logo" href="#top" @click="closeMenu">{{ portfolio.profile.name }}<span>포트폴리오</span></a>
+      <button class="menu-button" aria-controls="main-nav" :aria-expanded="menuOpen" :aria-label="menuOpen ? '메뉴 닫기' : '메뉴 열기'" @click="menuOpen = !menuOpen">
         {{ menuOpen ? '닫기' : '메뉴' }}
       </button>
-      <nav :class="['nav', { open: menuOpen }]" aria-label="주요 메뉴">
+      <nav id="main-nav" :class="['nav', { open: menuOpen }]" aria-label="주요 메뉴" @keydown.esc="closeMenu">
         <a v-for="item in portfolio.nav" :key="item.href" :href="item.href" @click="closeMenu">{{ item.label }}</a>
       </nav>
-      <a class="top-contact" :href="`mailto:${portfolio.profile.email}`">Let’s talk <span>↗</span></a>
     </header>
 
-    <main id="top">
-      <section class="hero section-pad">
-        <div class="hero-grid" aria-hidden="true" />
-        <div class="hero-copy">
-          <p class="eyebrow">
-            <span class="pulse" /> OPEN TO OPPORTUNITIES
-          </p>
-          <p class="hero-role">
-            {{ portfolio.profile.role }}
-          </p>
-          <h1>{{ portfolio.profile.headline }}</h1>
-          <p class="hero-intro">
-            {{ portfolio.profile.intro }}
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="#projects">프로젝트 보기 <span>↓</span></a>
-            <a class="button ghost" :href="portfolio.profile.github" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
-          </div>
+    <main id="main">
+      <div id="top" />
+      <section id="about" class="hero section-pad">
+        <p class="eyebrow">
+          {{ portfolio.profile.role }}
+        </p>
+        <h1>{{ portfolio.profile.headline }}</h1>
+        <p class="hero-intro">
+          {{ portfolio.profile.intro }}
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#projects">프로젝트 보기 <span aria-hidden="true">↓</span></a>
+          <a class="text-link" :href="portfolio.profile.github" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
         </div>
-        <aside class="code-card" aria-label="개발자 소개 카드">
-          <div class="code-dots">
-            <i /><i /><i /><span>developer.json</span>
-          </div>
-          <pre><span class="muted">{</span>
-  <span class="key">"name"</span>: <span class="value">"{{ portfolio.profile.name }}"</span>,
-  <span class="key">"focus"</span>: [
-    <span class="value">"Backend"</span>,
-    <span class="value">"AI"</span>
-  ],
-  <span class="key">"mindset"</span>: <span class="value">"Ship & Learn"</span>,
-  <span class="key">"status"</span>: <span class="accent">"building"</span>
-<span class="muted">}</span></pre>
-        </aside>
-      </section>
-
-      <section id="about" class="stats section-pad" aria-label="핵심 경험">
-        <article v-for="stat in portfolio.stats" :key="stat.label">
-          <strong>{{ stat.value }}</strong><span>{{ stat.label }}</span>
-        </article>
-      </section>
-
-      <section id="experience" class="section-pad content-section">
-        <header class="section-head">
-          <div>
-            <p class="kicker">
-              01 / JOURNEY
-            </p><h2>배움이 서비스가 되기까지</h2>
-          </div><p>개발을 배우는 데서 멈추지 않고,<br>사용되는 결과물로 연결해 왔습니다.</p>
-        </header>
-        <div class="timeline">
-          <article v-for="(item, index) in portfolio.journey" :key="item.period" class="timeline-item">
-            <div class="timeline-index">
-              0{{ index + 1 }}
-            </div>
-            <div class="timeline-period">
-              {{ item.period }}
-            </div>
-            <div class="timeline-content">
-              <span class="tag">{{ item.tag }}</span><h3>{{ item.title }}</h3><p>{{ item.body }}</p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section id="skills" class="section-pad content-section skills-section">
-        <header class="section-head">
-          <div>
-            <p class="kicker">
-              02 / TOOLKIT
-            </p><h2>기술보다 사용 경험을 말합니다</h2>
-          </div>
-        </header>
-        <div class="skill-grid">
-          <article v-for="skill in portfolio.skills" :key="skill.group" class="skill-card">
-            <p class="skill-number">
-              {{ String(portfolio.skills.indexOf(skill) + 1).padStart(2, '0') }}
-            </p><h3>{{ skill.group }}</h3>
-            <div class="chip-list">
-              <span v-for="item in skill.items" :key="item">{{ item }}</span>
-            </div><p>{{ skill.note }}</p>
-          </article>
+        <div class="summary-grid" aria-label="주요 경험 요약">
+          <a v-for="item in portfolio.summary" :key="item.title" :href="item.href" class="summary-item">
+            <h2>{{ item.title }} <span aria-hidden="true">↗</span></h2>
+            <p>{{ item.body }}</p>
+          </a>
         </div>
       </section>
 
       <section id="projects" class="section-pad content-section">
         <header class="section-head">
-          <div>
-            <p class="kicker">
-              03 / SELECTED WORK
-            </p><h2>문제를 해결한 프로젝트</h2>
-          </div><p>최신 팀 프로젝트와 실제 운영 경험을<br>가장 먼저 보여드립니다.</p>
+          <h2>프로젝트</h2>
+          <p>제가 맡은 역할과 구현한 기능을 정리했습니다.</p>
         </header>
         <div class="projects">
-          <article v-for="project in portfolio.projects" :key="project.number" class="project-card">
-            <div class="project-visual">
-              <img v-if="project.image" :src="project.image" :alt="project.imageAlt">
-              <span class="project-number">{{ project.number }}</span><span class="status">● {{ project.status }}</span>
-              <div v-if="!project.image" class="visual-word">
-                {{ project.number === '01' ? 'PLAY' : 'LIVE' }}
-              </div>
-            </div>
-            <div class="project-info">
+          <article v-for="project in portfolio.projects" :id="`project-${project.id}`" :key="project.id" class="project-card">
+            <div class="project-overview">
+              <p class="project-meta">
+                {{ project.statusLabel }}
+              </p>
+              <h3>{{ project.title }}</h3>
               <p class="project-subtitle">
                 {{ project.subtitle }}
-              </p><h3>{{ project.title }}</h3><p>{{ project.description }}</p>
-              <ul>
-                <li v-for="item in project.highlights" :key="item">
-                  {{ item }}
-                </li>
-              </ul>
-              <div class="tech-list">
+              </p>
+              <p class="project-description">
+                {{ project.description }}
+              </p>
+              <dl class="project-role">
+                <dt>담당</dt><dd>{{ project.role }}</dd>
+              </dl>
+              <div class="tech-list" aria-label="사용 기술">
                 <span v-for="tech in project.tech" :key="tech">{{ tech }}</span>
               </div>
-              <a :href="project.link" :target="project.link.startsWith('http') ? '_blank' : null" rel="noreferrer">{{ project.link.startsWith('http') ? '서비스 방문하기' : '상세 내용 준비 중' }} <span>↗</span></a>
+              <a v-if="project.link" class="text-link" :href="project.link" target="_blank" rel="noreferrer">서비스 보기 <span aria-hidden="true">↗</span></a>
+            </div>
+            <figure v-if="project.image" class="project-image">
+              <img :src="project.image" :alt="project.imageAlt" loading="lazy">
+              <figcaption>{{ project.imageAlt }}</figcaption>
+            </figure>
+            <div v-if="project.metrics" class="project-metrics">
+              <table>
+                <caption>{{ project.metricCaption }}</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">
+                      용도 / 모델
+                    </th><th scope="col">
+                      AP50-95
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="metric in project.metrics" :key="metric.purpose">
+                    <th scope="row">
+                      {{ metric.purpose }}<span>{{ metric.model }}</span><small>{{ metric.dataset }}</small>
+                    </th>
+                    <td>{{ metric.value }}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="metric-note">
+                {{ project.metricNote }}
+              </p>
+            </div>
+            <div class="project-details">
+              <div v-for="detail in project.details" :key="detail.title" class="detail-item">
+                <h4>{{ detail.title }}</h4>
+                <p>{{ detail.body }}</p>
+              </div>
             </div>
           </article>
         </div>
       </section>
 
-      <section class="now section-pad content-section">
-        <div>
-          <p class="eyebrow">
-            <span class="pulse" /> CURRENTLY WORKING ON
-          </p><h2>오늘도 연결하고,<br>실험하고 있습니다.</h2>
+      <section id="experience" class="section-pad content-section">
+        <header class="section-head">
+          <h2>경험</h2><p>서비스 운영에서 팀 프로젝트까지</p>
+        </header>
+        <div class="timeline">
+          <article v-for="item in portfolio.journey" :key="item.period" class="timeline-item">
+            <p class="timeline-period">
+              {{ item.period }}
+            </p>
+            <div class="timeline-content">
+              <h3>{{ item.title }}</h3><p>{{ item.body }}</p>
+            </div>
+            <span class="tag">{{ item.tag }}</span>
+          </article>
         </div>
-        <ul>
-          <li v-for="(item, index) in portfolio.current" :key="item">
-            <span>0{{ index + 1 }}</span>{{ item }}
-          </li>
-        </ul>
+      </section>
+
+      <section id="skills" class="section-pad content-section">
+        <header class="section-head">
+          <h2>사용 기술</h2><p>프로젝트와 학습에 사용한 도구들</p>
+        </header>
+        <div class="skill-grid">
+          <article v-for="skill in portfolio.skills" :key="skill.group" class="skill-item">
+            <h3>{{ skill.group }}</h3>
+            <div>
+              <div class="tech-list">
+                <span v-for="item in skill.items" :key="item">{{ item }}</span>
+              </div><p>{{ skill.note }}</p>
+            </div>
+          </article>
+        </div>
       </section>
     </main>
 
     <footer id="contact" class="footer section-pad">
-      <p class="kicker">
-        04 / CONTACT
-      </p><h2>함께 해결할 문제가 있다면,<br><a :href="`mailto:${portfolio.profile.email}`">이야기를 나눠요. ↗</a></h2>
+      <div><h2>연락</h2><p>프로젝트와 개발 경험에 대해 더 이야기하고 싶다면 연락 주세요.</p></div>
+      <div class="contact-links">
+        <a :href="`mailto:${portfolio.profile.email}`">{{ portfolio.profile.email }} <span aria-hidden="true">↗</span></a><a :href="portfolio.profile.github" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+      </div>
       <div class="footer-bottom">
-        <span>© 2026 {{ portfolio.profile.name }}</span><a :href="portfolio.profile.github" target="_blank" rel="noreferrer">GitHub ↗</a><a href="#top">Back to top ↑</a>
+        <span>© 2026 {{ portfolio.profile.name }}</span><a href="#top">맨 위로 ↑</a>
       </div>
     </footer>
   </div>

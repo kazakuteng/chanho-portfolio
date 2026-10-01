@@ -3,13 +3,14 @@ import { portfolio } from '../src/data/portfolio'
 
 describe('portfolio content', () => {
   it('keeps required sections in navigation', () => {
-    expect(portfolio.nav.map((item) => item.href)).toEqual(['#about', '#experience', '#skills', '#projects', '#contact'])
+    expect(portfolio.nav.map((item) => item.href)).toEqual(['#about', '#projects', '#experience', '#skills', '#contact'])
   })
 
-  it('includes the live Django service', () => {
+  it('includes the Flask club service with its SQLite storage', () => {
     const liveProject = portfolio.projects.find((project) => project.status === 'LIVE SERVICE')
     expect(liveProject?.link).toBe('https://kazakuteng.pythonanywhere.com/')
-    expect(liveProject?.tech).toContain('Django')
+    expect(liveProject?.tech).toContain('Flask')
+    expect(liveProject?.tech).toContain('SQLite')
   })
 
   it('uses confirmed personal contact information', () => {
@@ -26,7 +27,7 @@ describe('portfolio content', () => {
   })
 
   it('connects project screenshots with accessible descriptions', () => {
-    portfolio.projects.forEach((project) => {
+    portfolio.projects.filter((project) => project.image).forEach((project) => {
       expect(project.image).toMatch(/project-/)
       expect(project.imageAlt).toBeTruthy()
     })
